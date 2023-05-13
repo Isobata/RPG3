@@ -40,7 +40,7 @@ const MAP_HEIGHT = 32;//マップ高さ
 //内部カウンタ
 let gFrame = 0; //内部カウンタ
 const INTERVAL = 33;//フレーム呼び出し間隔
-const SCROLL = 4;//スクロール速度
+const SCROLL = 1;//スクロール速度
 //ウィンドウ関係
 const WINDSTYLE = "rgba(0,0,0,0.75)";//ウィンドウの色
 const FONTSTYLE = "#ffffff";//文字の色
