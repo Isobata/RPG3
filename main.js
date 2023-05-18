@@ -648,6 +648,7 @@ function getParam(name, url) {
 
 window.onload = function () {
 	let savename = getParam("name");
+	console.log(savename);
 	const jsonData = localStorage.getItem(savename);
 	const save = JSON.parse(jsonData);
 
