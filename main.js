@@ -512,6 +512,7 @@ window.onkeydown = function (ev) {
 		save.exp = exp;
 		save.Lv = Lv;
 		save.MHP = MHP;
+		console.log(savename);
 		const jsonData = JSON.stringify(save);
 		localStorage.setItem(savename, jsonData);
 		window.location.reload();
