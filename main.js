@@ -647,6 +647,7 @@ function getParam(name, url) {
 //ブラウザ起動時
 
 window.onload = function () {
+	console.log("a");
 	let savename = getParam("name");
 	console.log(savename);
 	const jsonData = localStorage.getItem(savename);
