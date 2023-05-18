@@ -2,7 +2,7 @@
  RPG
 
 ## URL
-https://isobata.github.io/RPG2/
+
 
 ## 概要
 DQ1のようなファミコンのRPGを作成しました
