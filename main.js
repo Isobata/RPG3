@@ -636,6 +636,7 @@ function TickField() {
 
 window.onload = function () {
 	const searchParams = new URLSearchParams(window.location.search);
+	console.log(window.location.search);
 	let savename = searchParams.get('name');
 	console.log(searchParams.get('name'));
 	const jsonData = localStorage.getItem(savename);
