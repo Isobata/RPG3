@@ -632,22 +632,11 @@ function TickField() {
 	gPlayerY %= (MAP_HEIGHT * TILESIZE);//マップがループしても座標の値がマイナスにならないようあらかじめ0にならないようにして余りを計算
 }
 
-//クエリ文字列から値を取り出す関数
-function getParam(name, url) {
-	//url = window.location.href; //URLの取得
-	name = name.replace(/[\[\]]/g, "\\$&");
-	var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)");
-	var results = regex.exec(url);
-	if (!results) return null;
-	if (!results[2]) return '';
-	return decodeURIComponent(results[2].replace(/\+/g, " "));
-}
-
-
 //ブラウザ起動時
 
 window.onload = function () {
-	let savename = getParam("name");
+	const searchParams = new URLSearchParams(window.location.search)
+	let savename = searchParams.has('name');
 	console.log(savename);
 	const jsonData = localStorage.getItem(savename);
 	const save = JSON.parse(jsonData);
