@@ -55,7 +55,7 @@ let gMessage2 = null;//表示メッセージ2行目
 //アイテム
 let key = 0;//鍵
 //プレイヤー情報
-const STARTHP = 20;
+let STARTHP = 20;
 let exp = 0;
 let HP = STARTHP;
 let MHP = STARTHP;
