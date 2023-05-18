@@ -101,7 +101,7 @@ const save = {
 	exp: exp,
 };
 
-
+let savename;
 
 const gEncounter = [0, 0, 0, 1, 0, 0, 2, 3, 0, 0, 0, 0, 0, 0, 0, 0];//マップタイルごとの敵出現確立
 
@@ -637,7 +637,6 @@ function TickField() {
 window.onload = function () {
 	const searchParams = new URLSearchParams(window.location.search);
 	console.log(window.location.search);
-	let savename;
 	savename = searchParams.get('name');
 	console.log(searchParams.get('name'));
 	const jsonData = localStorage.getItem(savename);
