@@ -651,7 +651,7 @@ function getParam(name, url) {
 //ブラウザ起動時
 
 window.onload = function () {
-	const savename = getParam("name");
+	let savename = getParam("name");
 	const jsonData = localStorage.getItem(savename);
 	const save = JSON.parse(jsonData);
 
