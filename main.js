@@ -422,11 +422,7 @@ window.onkeydown = function (ev) {
 	}
 
 	gKey[c] = 1;
-	if (gPhase == 0) {
-		if (c == 13 || c == 90) {	//	Enterキー、又はZキーの場合
-			savename = $("#input").val();
-		}
-	}
+
 
 	if (gPhase == 1) {//敵出現フェーズ
 		if (IsBoss()) {
