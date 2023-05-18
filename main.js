@@ -26,9 +26,9 @@ let gAngle = 0;//プレイヤー画像の向き
 let gImgMonster;
 let gEnemyType;		//	敵種別
 let gImgBoss;
-//モンスター戦闘関連
+//モンスター関連
 let gEnemyHP;//敵HP
-
+let Encount;//エンカウント
 //プレイヤー座標関連
 const START_X = 15;//初期x座標
 const START_Y = 17;//初期y座標
@@ -68,7 +68,7 @@ let gOrder;//行動順
 const gFileMap = "img/map.png";
 const gFilePlayer = "img/player.png";
 const gFileMonster = "img/monster.png";
-const gFileBoss = "img/boss.png"
+const gFileBoss = "img/boss.png";
 //画像ファイルの読み込み
 function LoadImage() {
 	gImgMap = new Image();
@@ -95,7 +95,13 @@ var keySE = new Audio("audio/key.mp3");
 var WBGM = new Audio("audio/WBGM.mp3");
 var Victory = new Audio("audio/Victory.mp3");
 
+const save = {
+	Lv: Lv,
+	MHP: STARTHP,
+	exp: exp,
+};
 
+const savename = "";
 
 const gEncounter = [0, 0, 0, 1, 0, 0, 2, 3, 0, 0, 0, 0, 0, 0, 0, 0];//マップタイルごとの敵出現確立
 
@@ -416,6 +422,11 @@ window.onkeydown = function (ev) {
 	}
 
 	gKey[c] = 1;
+	if (gPhase == 0) {
+		if (c == 13 || c == 90) {	//	Enterキー、又はZキーの場合
+			savename = $("#input").val();
+		}
+	}
 
 	if (gPhase == 1) {//敵出現フェーズ
 		if (IsBoss()) {
@@ -502,6 +513,11 @@ window.onkeydown = function (ev) {
 	if (gPhase == 9) {
 		DBGM.pause();
 		DBGM.currentTime = 0;
+		save.exp = exp;
+		save.Lv = Lv;
+		save.MHP = MHP;
+		const jsonData = JSON.stringify(save);
+		localStorage.setItem("save", jsonData);
 		window.location.reload();
 	}
 
@@ -560,7 +576,7 @@ function TickField() {
 
 		if (m == 10 || m == 11) {//街
 			HP = MHP;
-			SetMessage("西の果てにも", "村があります");
+			SetMessage("東の果てにも", "村があります");
 		}
 
 		if (m == 12) {//村
@@ -601,8 +617,8 @@ function TickField() {
 			}
 			t += Math.random() * 8;//敵のレベルをランダムに上昇
 			t = Math.floor(t / 16);
-			t = Math.min(t, gMonsterName.length - 2);
-			AppearEnemy(t);
+			Encount = Math.min(t, gMonsterName.length - 2);
+			AppearEnemy(Encount);
 
 		}
 
@@ -620,10 +636,31 @@ function TickField() {
 	gPlayerY %= (MAP_HEIGHT * TILESIZE);//マップがループしても座標の値がマイナスにならないようあらかじめ0にならないようにして余りを計算
 }
 
+//クエリ文字列から値を取り出す関数
+function getParam(name, url) {
+	//url = window.location.href; //URLの取得
+	name = name.replace(/[\[\]]/g, "\\$&");
+	var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)");
+	var results = regex.exec(url);
+	if (!results) return null;
+	if (!results[2]) return '';
+	return decodeURIComponent(results[2].replace(/\+/g, " "));
+}
+
 
 //ブラウザ起動時
-window.onload = function () {
 
+window.onload = function () {
+	savename = getParam("name");
+	const jsonData = localStorage.getItem(savename);
+	const save = JSON.parse(jsonData);
+
+	console.log(save);
+	if (save) {
+		exp = save.exp;
+		Lv = save.Lv;
+		STARTHP = save.MHP;
+	}
 	LoadImage();
 
 	gScreen = document.createElement("canvas");//仮想画面を作成

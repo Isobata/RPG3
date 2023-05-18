@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8" />
+	<title>Output</title>
+
+</head>
+
+<body>
+	<!-- scriptタグで囲まれているところはJavadcriptで記述  -->
+	<script type="text/javascript">
+		document.write("名前：" + getParam("name") + "　年齢：" + getParam("age") + "歳");
+
+		//クエリ文字列から値を取り出す関数
+		function getParam(name, url) {
+			//url = window.location.href; //URLの取得
+			name = name.replace(/[\[\]]/g, "\\$&");
+			var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)");
+			var results = regex.exec(url);
+			if (!results) return null;
+			if (!results[2]) return '';
+			return decodeURIComponent(results[2].replace(/\+/g, " "));
+		}
+	</script>
+</body>
+
+</html>

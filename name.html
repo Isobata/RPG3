@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8" />
+	<title>Input</title>
+
+</head>
+
+<body>
+	<form id="form1" action="#">
+		名前：
+		<input type="text" id="input_name" value=""> <br>
+		年齢：
+		<input type="text" id="input_age" value=""><br>
+
+		<input type="button" onclick="func1()" value="送信">
+	</form>
+
+	<!-- scriptタグで囲まれた部分はJavaScriptで記述 -->
+	<script type="text/javascript">
+		function func1() {
+			var input_name = document.getElementById("input_name").value; //入力された名前
+			var input_age = document.getElementById("input_age").value; //入力された年齢
+			var address = "C:\\Users\\isoba\\OneDrive\\デスクトップ\\G’ｓacadmy\\RPG2\\Output.html"; //htmlファイルのアドレス
+			var query = "?name=" + input_name + "&age=" + input_age; //クエリ文字列
+			var url = address + query; //URL
+
+			location.href = url; //現在のタブで結果表示
+		}
+	</script>
+</body>
+
+</html>
