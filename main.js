@@ -101,7 +101,7 @@ const save = {
 	exp: exp,
 };
 
-let savename = "";
+
 
 const gEncounter = [0, 0, 0, 1, 0, 0, 2, 3, 0, 0, 0, 0, 0, 0, 0, 0];//マップタイルごとの敵出現確立
 
@@ -651,7 +651,7 @@ function getParam(name, url) {
 //ブラウザ起動時
 
 window.onload = function () {
-	savename = getParam("name");
+	const savename = getParam("name");
 	const jsonData = localStorage.getItem(savename);
 	const save = JSON.parse(jsonData);
 
