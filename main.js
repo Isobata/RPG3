@@ -101,7 +101,7 @@ const save = {
 	exp: exp,
 };
 
-let savename;
+let savename = "";
 
 const gEncounter = [0, 0, 0, 1, 0, 0, 2, 3, 0, 0, 0, 0, 0, 0, 0, 0];//マップタイルごとの敵出現確立
 
